@@ -4,7 +4,7 @@ use std::io::ErrorKind;
 fn main() {
     let f = File::open("hello.txt");
 
-    let f = match f {
+    let _f = match f {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -14,4 +14,8 @@ fn main() {
             other_error => panic!("There was a problem opening the file: {:?}", other_error),
         },
     };
+}
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f
 }
