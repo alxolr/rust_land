@@ -1,3 +1,7 @@
+mod drop;
+
+use drop::CustomSmartPointer;
+
 enum List {
     Cons(i32, Box<List>),
     Nil,
@@ -23,7 +27,7 @@ impl<T> Deref for MyBox<T> {
 }
 
 fn main() {
-    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+    let _list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 
     let x = 5;
     let y = MyBox::new(x);
@@ -33,6 +37,16 @@ fn main() {
 
     let m = MyBox::new(String::from("Rust"));
     hello(&m);
+
+    let c = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+
+    let d = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+
+    println!("CustomSmartPointers created.");
 }
 
 fn hello(name: &str) {
